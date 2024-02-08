@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\LinkDetail;
 
 class LinkController extends Controller
 {
@@ -11,7 +12,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        return view ('links.index');
+        $links = LinkDetail::orderBy('id','desc')->get();
+        return view ('links.index',compact('links'));
     }
 
     /**
@@ -20,7 +22,7 @@ class LinkController extends Controller
     public function create()
     {
         //
-        return "demo";
+        return view ('links.create');
     }
 
     /**
@@ -28,7 +30,22 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->validate([
+            "title"=> "required",
+            "link_url"=> "required",
+            "status"=> "required",
+        ]);
+        // return $input;
+        $linkDetails = LinkDetail::create([
+            "title"=> $request->title,
+            "link_url"=> $request->link_url,
+            "status"=> $request->status
+        ]);
+        if ($linkDetails){
+            return redirect()->route('links.index');
+        } else{
+            return back();
+        }
     }
 
     /**
@@ -44,7 +61,8 @@ class LinkController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $link = LinkDetail::find($id);
+        return view ('links.edit',compact('link'));
     }
 
     /**
@@ -52,7 +70,17 @@ class LinkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $input = $request->validate([
+            "title"=> "required",
+            "link_url"=> "required",
+            "status"=> "required",
+        ]);
+        $linkDetails = LinkDetail::find($id)->update($input);
+        if ($linkDetails){
+            return redirect()->route('links.index');
+        } else{
+            return back();
+        }
     }
 
     /**
@@ -60,6 +88,7 @@ class LinkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $linkDetails = LinkDetail::find($id)->delete();
+        return back();
     }
 }

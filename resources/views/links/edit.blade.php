@@ -7,12 +7,12 @@
     <div class="content">
         <div class="container-fluid">
 
-            <form action="{{route('links.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('links.update',$link->id)}}" method="POST">
                 @csrf
-                @method('post')
+                @method('PUT')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title p-0">Create New Link</h4>
+                        <h4 class="card-title p-0">Update Link</h4>
                     </div>
                 </div>
 
@@ -28,14 +28,14 @@
                             </div>
                             <div class="card-body row">
                                 <div class="col-md-12 p-2">
-                                    <div class="row">
+                                    <div class="row ">
                                         <div class="col-md-8 offset-md-2 mt-2">
                                             <div class="form-group">
                                                 <label class="class mb-2" for="for">
                                                     URL Title
                                                 </label>
                                                 <span class="form-label-required text-danger">*</span>
-                                                <input type="text" name="title" id="title" class="form-control class " value="{{old('title')}}" placeholder="Enter the URL Title">
+                                                <input type="text" name="title" id="title" class="form-control class " value="{{$link->title}}" placeholder="Enter the URL Title">
                                                 @if ($errors->has('title'))
                                                 <span class="error text-danger">{{ $errors->first('title') }}</span>
                                                 @endif
@@ -45,7 +45,7 @@
                                                     URL
                                                 </label>
                                                 <span class="form-label-required text-danger">*</span>
-                                                <input type="url" name="link_url" id="link_url" class="form-control class " value="{{old('link_url')}}" placeholder="Enter the URL">
+                                                <input type="url" name="link_url" id="link_url" class="form-control class " value="{{$link->link_url}}" placeholder="Enter the URL">
                                                 @if ($errors->has('link_url'))
                                                 <span class="error text-danger">{{ $errors->first('link_url') }}</span>
                                                 @endif
@@ -58,8 +58,8 @@
                                                 </label>
                                                 <select class="form-control" name="status" id="status">
                                                     <option value=""> Select status</option>
-                                                    <option value="active" {{old('status')== 'active' ? 'selected' : ''}}>Active</option>
-                                                    <option value="inactive" {{old('status')== 'inactive' ? 'selected' : ''}}>In-Active</option>
+                                                    <option value="active" {{$link->status== 'active' ? 'selected' : ''}}>Active</option>
+                                                    <option value="inactive" {{$link->status== 'inactive' ? 'selected' : ''}}>In-Active</option>
                                                 </select>
                                                 @if ($errors->has('status'))
                                                 <span class="error text-danger">{{ $errors->first('status') }}</span>

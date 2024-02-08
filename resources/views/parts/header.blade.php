@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+      {{-- <i class="bi bi-list toggle-sidebar-btn"></i> --}}
       <a href="#." class="px-1 logo d-flex align-items-center">
         <img src="{{asset('assets/img/logo.png')}}" alt="logo">
         

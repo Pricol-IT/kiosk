@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class LinkDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "title",
+        "link_url",
+        "status"
+    ];
 }

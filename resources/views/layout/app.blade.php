@@ -24,7 +24,7 @@
 @include('parts.header')
   
   <!-- ======= Sidebar ======= -->
-@include('parts.sidebar')
+{{-- @include('parts.sidebar') --}}
 @yield('main')
   
 

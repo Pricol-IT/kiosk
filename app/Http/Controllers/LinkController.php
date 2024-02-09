@@ -42,8 +42,10 @@ class LinkController extends Controller
             "status"=> $request->status
         ]);
         if ($linkDetails){
+            toastr()->success("New link is stored");
             return redirect()->route('links.index');
         } else{
+            toastr()->error("something went wrong!");
             return back();
         }
     }
@@ -77,8 +79,10 @@ class LinkController extends Controller
         ]);
         $linkDetails = LinkDetail::find($id)->update($input);
         if ($linkDetails){
+            toastr()->success("link is updated sucessfully");
             return redirect()->route('links.index');
         } else{
+            toastr()->error("something went wrong!");
             return back();
         }
     }
@@ -89,6 +93,7 @@ class LinkController extends Controller
     public function destroy(string $id)
     {
         $linkDetails = LinkDetail::find($id)->delete();
+        toastr()->success("Link is deleted");
         return back();
     }
 }

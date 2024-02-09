@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
+use App\Models\LinkDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use App\Http\Controllers\LinkController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $links= LinkDetail::where('status','active')->orderBy('id','desc')->get();
+    return view('welcome',compact('links'));
 });
 
 Auth::routes();

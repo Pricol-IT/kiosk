@@ -59,7 +59,7 @@
                                                 <select class="form-control" name="status" id="status">
                                                     <option value=""> Select status</option>
                                                     <option value="active" {{old('status')== 'active' ? 'selected' : ''}}>Active</option>
-                                                    <option value="inactive" {{old('status')== 'inactive' ? 'selected' : ''}}>In-Active</option>
+                                                    <option value="inactive" {{old('status')== 'inactive' ? 'selected' : ''}}>In-active</option>
                                                 </select>
                                                 @if ($errors->has('status'))
                                                 <span class="error text-danger">{{ $errors->first('status') }}</span>

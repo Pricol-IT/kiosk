@@ -35,7 +35,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$link->title}}</td>
                             <td><a href="{{$link->link_url}}">{{$link->link_url}}</a></td>
-                            <td>{{$link->status}}</td>
+                            <td>{{ucfirst($link->status)}}</td>
 
 
                             <td>

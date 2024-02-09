@@ -25,7 +25,7 @@
         <div class="row ">
             @foreach ($links as $link)
             <div class="col-lg-4 p-2">
-                <a href="{{$link->link_url}}" target="_blank" style="text-decoration: none;">
+                <a href="{{$link->link_url}}" style="text-decoration: none;">
                     <div class="card border-info p-2 h-100 shadow d-flex flex-column bg-c-blue">
                         <div class="card-body text-center flex-fill">
                             <h2 class="text-primary">{{$link->title}}</h2>

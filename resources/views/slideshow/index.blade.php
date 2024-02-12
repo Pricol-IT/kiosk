@@ -10,8 +10,7 @@
                 <div class=" d-flex justify-content-between">
                     <h4 class="card-title p-0">All links</h4>
                     <div class="button">
-                        <a href="{{ route('links.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i>Create New Link</a>
-                        <a href="{{ route('slideshow.index') }}" class="btn btn-primary"><i class='bx bx-plus'></i>SlideShow</a>
+                        <a href="{{ route('slideshow.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i>Upload Image</a>
 
                     </div>
                 </div>
@@ -24,27 +23,24 @@
                     <thead>
                         <tr>
                             <th>S.no</th>
-                            <th>Title</th>
-                            <th>URL</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($links as $link)
+                        @forelse ($images as $image)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$link->title}}</td>
-                            <td><a href="{{$link->link_url}}">{{$link->link_url}}</a></td>
-                            <td>{{ucfirst($link->status)}}</td>
+                            <td>
+                                <a href="{{$image->image_url}}" target="_blank"><img src="{{$image->image_url}}" alt="img" width="100px"></a>
+                            </td>
+                            <td>{{ucfirst($image->status)}}</td>
 
 
                             <td>
                                 <div class="d-flex gap-1">
-                                    <a href="{{route('links.edit',$link->id)}}" class="btn btn-sm btn-warning">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <form method="post" action="{{ route('links.destroy',$link->id) }}">
+                                    <form method="post" action="{{ route('slideshow.destroy',$image->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
@@ -54,7 +50,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4" class="text-center">record not found</td>
+                            <td colspan="5" class="text-center">record not found</td>
                         </tr>
                         @endforelse
 
@@ -66,4 +62,7 @@
     </div>
 
 </main><!-- End #main -->
+@endsection
+@section('script')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection

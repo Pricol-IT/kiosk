@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\SlideShowController;
 use App\Models\LinkDetail;
+use App\Models\SlideShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,8 @@ use App\Models\LinkDetail;
 
 Route::get('/', function () {
     $links= LinkDetail::where('status','active')->orderBy('id','desc')->get();
-    return view('welcome',compact('links'));
+    $images= SlideShow::all();
+    return view('welcome',compact('links','images'));
 });
 
 Auth::routes();
@@ -26,3 +29,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/home', [LinkController::class, 'index'])->name('home');
 
 Route::resource('links',LinkController::class);
+Route::resource('slideshow',SlideShowController::class);

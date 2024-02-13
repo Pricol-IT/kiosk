@@ -11,7 +11,7 @@
                     <h4 class="card-title p-0">All links</h4>
                     <div class="button">
                         <a href="{{ route('links.create') }}" class="btn btn-primary"><i class='bx bx-plus'></i>Create New Link</a>
-                        <a href="{{ route('slideshow.index') }}" class="btn btn-primary"><i class='bx bx-plus'></i>SlideShow</a>
+                        <a href="{{ route('slideshow.index') }}" class="btn btn-primary"></i>SlideShow</a>
 
                     </div>
                 </div>
